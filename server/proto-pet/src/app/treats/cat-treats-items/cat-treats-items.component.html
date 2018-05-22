@@ -1,0 +1,71 @@
+<ul class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>
+
+<div  *ngFor="let item of Items;">
+  <div  id="border_card" >
+    <img class="card-img-top" [src]="setImage(item.food_picture_name)" alt="Card image cap">
+    <div class="card-block">
+      <h2 class="card-title" >{{item.food_name}}</h2>
+      <h4 class="card-text">Brand : {{item.brand}}</h4>
+      <h4 class="card-text">Type : {{item.food_type}}</h4>
+      <h4 class="card-text">Ingredients : </h4>
+      <p class="card-text"> {{getContentsArray(item.ingredients)}}</p>
+      <div *ngIf="item.health_considerations.length > 0">
+        <h4 class="card-text">Health Consideration : </h4>
+        <p class="card-text"> {{getContentsArray(item.health_considerations)}}</p>
+      </div>
+      <div *ngIf="item.nutritional_options.length > 0">
+        <h4 class="card-text">Nutritional Options : </h4>
+        <p class="card-text"> {{getContentsArray(item.nutritional_options)}}</p>
+      </div>
+      <h4 class="card-text">Guaranteed Analysis : </h4>
+      <p class="card-text"> {{getGuaranteedAnalysisArray(item.guaranteedAnalysis)}}</p>
+      <h4 class="card-text">Description : </h4>
+      <p class="card-text">{{item.description}}</p>
+      <h4 class="card-text">createdAt : </h4>
+      <p class="card-text">{{item.createAt | date: 'yyyy.MM.dd   HH:mm'}}</p>
+      <h4 class="card-text">updatedAt : </h4>
+      <p class="card-text">{{item.updateAt | date: 'yyyy.MM.dd   HH:mm'}}</p>
+
+    </div>
+    
+    <div class="card-block">
+      <button type="button" class="btn btn-default" (click)="requestEditItem(item)" >Edit</button>
+      <button type="button" class="btn btn-default" (click)="requestDeleteItem(item.id)" >Delete</button>
+    </div>
+    <br>
+  </div>
+</div>
+
+<ul class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>

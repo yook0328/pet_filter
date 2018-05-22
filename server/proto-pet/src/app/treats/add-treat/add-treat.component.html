@@ -1,0 +1,122 @@
+<form [formGroup]="registerFoodForm" (ngSubmit)="onSubmit()">
+  <div class="thumbnail">
+    <img src="/assets/petFoodImage.jpeg" class="image" alt="...">
+
+    <div class="filebox"> 
+      <label for="ex_file">Load Image</label> 
+      <input type="file" id="ex_file" accept="image/*" (change)="onAddImage($event)"> 
+    </div>
+  </div>
+
+  <label for="petType">Pet Type : </label>
+  <div class="radio" id="petType" *ngFor="let type of pet_types; let i = index">
+    <label><input type="radio" [value] = "type" (click)="onChangePetType(type)" formControlName= "petType">{{type}}</label>
+  </div>
+  <hr>
+  <div class="form-group">
+    <label for="foodname">food name :</label>
+    <input type="text"
+             class="form-control"
+             id="foodname"
+             placeholder="name"
+             formControlName="foodname"
+             >
+    
+  </div>
+  
+  <div class="form-group">
+    <label for="brand">food brand :</label>
+    <input type="text"
+             class="form-control"
+             id="brand"
+             placeholder="brand"
+             formControlName="brand"
+             >
+    
+  </div>
+  <hr>
+  <label for="foodType">food type : </label>
+  <div class="radio" id="foodType" *ngFor="let type of getFoodType(); let i = index">
+    <label><input type="radio" [value] = "type" formControlName= "foodType">{{type}}</label>
+  </div>
+  <hr>
+  <div class="form-group">
+    <label for="ingredients">Ingredients :</label>
+    <textarea type="text"
+             class="form-control"
+             id="ingredients"
+             placeholder="ingredients"
+             rows="5"
+             formControlName="ingredients"
+             autocomplete="off"
+             ></textarea>
+  </div>
+  <hr>
+  
+  
+  <div class="form-group">
+    <label for="guaranteedAnalysis">Guaranteed Analysis :</label>
+    <table class="table" id="guaranteedAnalysis">
+      <thead>
+        <tr>
+          <th>Name(ex. Crude Protein )</th>
+          <th>min or max(checked - max)</th>
+          <th>Content(ex. 15%, 400mg/kg)</th>
+        </tr>
+      </thead>
+      <tbody  *ngFor="let gaName of registerFoodForm.controls['guaranteedAnalysisName'].controls; let i = index">
+        <tr>
+          <td><input type="text"
+              class="form-control"
+              id="ga_name"
+              placeholder="name"
+              [formControl]= "registerFoodForm.controls['guaranteedAnalysisName'].controls[i]"
+              ></td>
+          <td >
+            <div class="content_center">
+              <label><input type="checkbox" [formControl]= "registerFoodForm.controls['guaranteedAnalysisMinOrMax'].controls[i]">Max</label>
+            </div>
+          </td>
+          <td><input type="text"
+              class="form-control"
+              id="ga_content"
+              placeholder="content"
+              [formControl]= "registerFoodForm.controls['guaranteedAnalysisContent'].controls[i]"
+              ></td>
+          <td>
+            <button type="button" class="glyphicon glyphicon-remove" (click)="clickGA_delteIcon(i)"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-default" (click)="onAddContent()" >Add Content</button>
+  </div>
+
+  <hr>
+  <div class="form-group">
+    <label for="description">Description :</label>
+    <textarea type="text"
+             class="form-control"
+             id="description"
+             placeholder="description"
+             rows="5"
+             formControlName="description"
+             ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
+
+<modal #myModal  data-keyboard="false" data-backdrop="static">
+    <modal-header>
+
+    </modal-header>
+    <modal-body class= "modal_body">
+        {{modal_body}}
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onCancel()">OK</button>
+        <div *ngIf="resultStatus == 200">
+          <button type="button" class="btn btn-primary" (click)="onAddFoodAgain()">Add Food Again</button>
+        </div>
+    </modal-footer>
+</modal>

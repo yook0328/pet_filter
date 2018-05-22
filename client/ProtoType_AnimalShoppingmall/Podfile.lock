@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Material (2.4.10):
+    - Material/Core (= 2.4.10)
+  - Material/Core (2.4.10)
+  - PagingMenuController (2.2.0)
+  - PKHUD (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - AlamofireImage (~> 3.1)
+  - Material (~> 2.0)
+  - PagingMenuController
+  - PKHUD (~> 4.0)
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Material: ef1e6da2e242d582205c87847a5346138894a633
+  PagingMenuController: 6176618987bb170096664f2da097313e45ed9c31
+  PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
+
+PODFILE CHECKSUM: 0730c5ca8a94ba311f3c5a72989b449e7ce0a08e
+
+COCOAPODS: 1.2.0.rc.1
